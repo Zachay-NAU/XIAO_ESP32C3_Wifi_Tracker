@@ -45,11 +45,11 @@ Consequently, by adhering to the Wi-Fi tracker's guidance, we can effectively op
 ---
 ## Micropython Configuration
 
-#### Install -Windows
+### Install -Windows
 Please follow the step in the picture
 <Picture 6>
 
-#### Update the firmware with esptool
+### Update the firmware with esptool
 
 1. Open your own file location
 
@@ -69,13 +69,164 @@ Please follow the step in the picture
 
 Note: If you use linux, change "esptool.exe" to "esptool.py". Change  "COM10" to your own serial port. Change "esp32c3-usb-20230426-v1.20.0.bin" to the latest firmware name you downloaded.
  
- #### Micropython Setup
+### Micropython Setup
 
  1. Plug in your XIAO ESP32C3, open Thonny and click right bottom to configure interpreter
+
  2. Select interpreter- Micropython (ESP32) and Port >>> Click OK
 
 Note: If everything goes well, you will see the output in the shell
-  
+
+### Install required libraries
+
+Click "Tools" >>> Click "Management Packages" >>> Enter Library's name >>> Click "Search micropython-lib and PyPl"
+
+### Run the scrip and Flash it to the board
+
+1. After you finish coding, click the green button to run the scrip
+
+2. Flash the code to the board by save the file to the board as "boot.py"
+
+---
+
+
+import network
+import time
+from time import sleep
+import machine
+from machine import Pin, SoftI2C
+import ssd1306
+import math
+
+# ESP32C3 Pin assignment
+i2c = SoftI2C(scl=Pin(7), sda=Pin(6))  # Adjust the Pin numbers based on your connections
+oled_width = 128
+oled_height = 64
+oled = ssd1306.SSD1306_I2C(oled_width, oled_height, i2c)
+
+# Network settings
+wifi_ssid = "UMASS fried chicken"
+wifi_password = "Zacharyloveschicken"
+machine.freq(160000000)  # Set CPU frequency to 160 MHz (ESP8266 specific)
+oled.text("Starting up...", 0, 0)
+oled.show()
+
+station = network.WLAN(network.STA_IF)
+station.active(True)
+station.connect(wifi_ssid, wifi_password)
+time.sleep(1)
+
+while not station.isconnected():
+    time.sleep(1)
+
+oled.fill(0)
+oled.text("Connecting to", 0, 0)
+oled.text(wifi_ssid, 0, 20)
+oled.show()
+time.sleep(2)
+
+oled.fill(0)
+ip_address = station.ifconfig()[0]  # Get the IP address
+oled.text("Connected! ", 0, 0)
+oled.text("IP Address:", 0, 20)
+oled.text(ip_address, 0, 40)
+oled.show()
+time.sleep(2)
+
+# Buzzer settings
+buzzer_pin = machine.Pin(5, machine.Pin.OUT)
+buzzer = machine.PWM(buzzer_pin)
+buzzer.freq(1047)
+buzzer.duty(0)
+
+center_x = oled_width // 2
+center_y = oled_height // 2
+square_size = 6  # Size of each square
+num_squares = 12  # Number of squares
+angle_increment = 2 * math.pi / num_squares
+
+x_pos = [12, 38, 64, 90]
+statuses = ["poor", "normal", "good", "excellent"]
+
+def calculate_block_count(rssi):
+    # Determine the number of blocks based on RSSI values
+    if -80 <= rssi < -60:
+        return 1
+    elif -60 <= rssi < -40:
+        return 2
+    elif -40 <= rssi < -20:
+        return 3
+    elif -20 <= rssi <= 10:
+        return 4
+
+def draw_blocks(count):
+    for i in range(count):
+        y_pos = 50 - calculate_block_height(i)
+        oled.fill_rect(x_pos[i], y_pos, 24, calculate_block_height(i), 1)
+    for i in range(count, 4):  # Clear unused area
+        y_pos = 50 - calculate_block_height(i)
+        oled.fill_rect(x_pos[i], y_pos, 24, calculate_block_height(i), 0)
+
+def calculate_block_height(index):
+    return 10 * (index + 1)
+
+loop_count = 0  # Initialize loop count
+
+while loop_count < 2:  # Execute the loop 24 times
+    oled.fill(0)  # Clear the screen
+    
+    for i in range(num_squares):
+        angle = i * angle_increment
+        x = int(center_x + (center_x - square_size-30) * math.cos(angle))
+        y = int(center_y + (center_x - square_size-30) * math.sin(angle))
+        
+        # Draw all squares
+        for j in range(num_squares):
+            angle_j = j * angle_increment
+            x_j = int(center_x + (center_x - square_size-30) * math.cos(angle_j))
+            y_j = int(center_y + (center_x - square_size-30) * math.sin(angle_j))
+            
+            oled.fill_rect(x_j, y_j, square_size, square_size, 1)  # Draw the square
+        
+        oled.fill_rect(x, y, square_size, square_size, 0)  # Erase the current square
+        oled.show()
+        time.sleep_ms(100)  # Pause before next iteration
+        
+    loop_count += 1  # Increase loop count
+
+oled.fill(0)  # Clear the screen after finishing the loops
+oled.show()
+
+while True:
+    oled.fill(0)
+    station = network.WLAN(network.STA_IF)
+    time.sleep(0.1)
+    rssi = station.status('rssi')
+    rssi_duty = 160 + 2 * int(rssi)
+    rssi_duty_2 = int(rssi_duty / 2)
+    rssi_abs = abs(int(rssi)) / 100
+ 
+    block_count = calculate_block_count(rssi)
+    status = statuses[block_count - 1]  # Get the status text based on block count
+    
+    draw_blocks(block_count)
+    
+    oled.text(status, 11, 56)
+    
+    oled.text("RSSI:", 0, 0)
+    oled.text(str(rssi), 40, 0)
+    # Update the display
+    oled.show()
+
+    buzzer.duty(rssi_duty)
+    time.sleep(rssi_abs)
+    buzzer.duty(0)
+    time.sleep(rssi_abs)
+    buzzer.duty(rssi_duty_2)
+    time.sleep(rssi_abs)
+    buzzer.duty(0)
+    time.sleep(rssi_abs)
+
 
 1. Micropython Configuration
 1.1 Installation
