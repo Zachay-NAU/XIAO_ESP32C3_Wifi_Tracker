@@ -68,7 +68,13 @@ Please follow the step in the picture
 ```esptool.exe --chip esp32c3 --port COM10 --baud 921600 --before default_reset --after hard_reset --no-stub  write_flash --flash_mode dio --flash_freq 80m 0x0 esp32c3-usb-20230426-v1.20.0.bin```
 
 Note: If you use linux, change "esptool.exe" to "esptool.py". Change  "COM10" to your own serial port. Change "esp32c3-usb-20230426-v1.20.0.bin" to the latest firmware name you downloaded.
+ 
+ #### Micropython Setup
 
+ 1. Plug in your XIAO ESP32C3, open Thonny and click right bottom to configure interpreter
+ 2. Select interpreter- Micropython (ESP32) and Port >>> Click OK
+
+Note: If everything goes well, you will see the output in the shell
   
 
 1. Micropython Configuration
