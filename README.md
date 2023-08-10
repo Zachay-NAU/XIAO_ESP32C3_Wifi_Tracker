@@ -1,5 +1,5 @@
 # XIAO_ESP32C3_Wifi_Tracker
-![alt text]([http://url/to/img.png](https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/532840c250d789e2fc4bb68591b72f1.jpg))
+![alt text](https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/532840c250d789e2fc4bb68591b72f1.jpg)
 
 ---
 ## Introduction
