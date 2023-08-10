@@ -1,5 +1,5 @@
 # XIAO_ESP32C3_Wifi_Tracker
-![alt text](https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/532840c250d789e2fc4bb68591b72f1.jpg)
+[![Watch the video](https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/532840c250d789e2fc4bb68591b72f1.jpg)](https://youtu.be/7n72Knh4IIM)
 
 ---
 ## Introduction
@@ -605,7 +605,6 @@ while True:
 
 ```
 
-[![Watch the video](https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/67c0c27ae1fe7395896acdf9aad6d8b1.mp4)
 
 
 
