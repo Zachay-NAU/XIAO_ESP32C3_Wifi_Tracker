@@ -1,5 +1,5 @@
 # XIAO_ESP32C3_Wifi_Tracker
-<Picture 1>
+![alt text](http://url/to/img.png)
 
 ---
 ## Introduction
