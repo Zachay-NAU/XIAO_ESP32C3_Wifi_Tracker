@@ -21,7 +21,8 @@ Consequently, by adhering to the Wi-Fi tracker's guidance, we can effectively op
             <strong><span><font color={'FFFFFF'} size={"4"}> Get One Now 🖱️</font></span></strong>
     </a>
 </div>
-<Picture 2>
+
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/fbfb55ff09c5f9f01459d26a2321631.png" width="100">
   
  2. Expansion Board Base for XIAO
 <div class="get_one_now_container" style={{textAlign: 'center'}}>
@@ -29,7 +30,8 @@ Consequently, by adhering to the Wi-Fi tracker's guidance, we can effectively op
             <strong><span><font color={'FFFFFF'} size={"4"}> Get One Now 🖱️</font></span></strong>
     </a>
 </div>
-<Picture 3>
+
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/da36e680de94231642f0c7e663b5163.png" width="200">
   
 ### Software
 
@@ -39,7 +41,8 @@ Consequently, by adhering to the Wi-Fi tracker's guidance, we can effectively op
             <strong><span><font color={'FFFFFF'} size={"4"}> Download Here 🖱️</font></span></strong>
     </a>
 </div>
-<Picture 4>
+
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/f8ade029a7b0ec070bacc4adb46d483.png" width="400">
   
 2. Esptool
 <div class="get_one_now_container" style={{textAlign: 'center'}}>
@@ -47,14 +50,16 @@ Consequently, by adhering to the Wi-Fi tracker's guidance, we can effectively op
             <strong><span><font color={'FFFFFF'} size={"4"}> Git clone Here 🖱️</font></span></strong>
     </a>
 </div>
-<Picture 5>
+
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/6d0efd20b926654137d03321b757837.png" width="400">
   
 ---
 ## Micropython Configuration
 
 ### Install -Windows
-Please follow the step in the picture
-<Picture 6>
+Please follow the steps in the picture
+
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/be3cba95c9b5462ff4dd20d39251a83.png" width="800">
 
 ### Update the firmware with esptool
 
@@ -76,6 +81,8 @@ Please follow the step in the picture
 esptool.exe --chip esp32c3 --port COM10 --baud 921600 --before default_reset --after hard_reset --no-stub  write_flash --flash_mode dio --flash_freq 80m 0x0 esp32c3-usb-20230426-v1.20.0.bin
 ```
 
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/57114d1b3bb6138d9ed342ca76dd5c6.png" width="800">
+
 Note: If you use linux, change "esptool.exe" to "esptool.py". Change  "COM10" to your own serial port. Change "esp32c3-usb-20230426-v1.20.0.bin" to the latest firmware name you downloaded.
  
 ### Micropython Setup
@@ -84,17 +91,25 @@ Note: If you use linux, change "esptool.exe" to "esptool.py". Change  "COM10" to
 
  2. Select interpreter- Micropython (ESP32) and Port >>> Click OK
 
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/98c830f16e88ecf5da6685e77f57eb5.png" width="800">
+
 Note: If everything goes well, you will see the output in the shell
 
 ### Install required libraries
 
 Click "Tools" >>> Click "Management Packages" >>> Enter Library's name >>> Click "Search micropython-lib and PyPl"
 
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/49f2b38ec0c14ab59fc03bb7bec35ac.png" width="800">
+
 ### Run the scrip and Flash it to the board
 
 1. After you finish coding, click the green button to run the scrip
 
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/f9bf9bad4ea3c4d9e9c2f93f2f0446a.png" width="800"> 
+
 2. Flash the code to the board by save the file to the board as "boot.py"
+
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/5899a201e83a6b00ca22e64c64ef390.png" width="800"> 
 
 ---
 
@@ -103,6 +118,8 @@ Click "Tools" >>> Click "Management Packages" >>> Enter Library's name >>> Click
 ### Light an Oled Screen
 
 #### 1. Hello Seeder!
+
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/9a3651e339a3a2d822845cc10174e0f.png" width="400"> 
 
 ```
 import time
@@ -124,6 +141,8 @@ oled.show()  # Show the text
 ```
 
 #### 2. Loading dynamic effect
+
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/53195a00c3a88a48f266aeeac46a573.png" width="400"> 
 
 ```
 import time
@@ -350,6 +369,8 @@ while True:
 
 #### 1. Connect to Wi-fi
 
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/01374627703f02411de1f91a192303c.png" width="400"> 
+
 ```
 import network
 import urequests
@@ -385,6 +406,8 @@ scan_and_connect()
 ```
 
 #### 2. Request New York Time online
+
+<img src="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/6cbc6218e2de98dc283765e19a75298.png" width="400"> 
 
 ```
 from machine import Pin, SoftI2C
