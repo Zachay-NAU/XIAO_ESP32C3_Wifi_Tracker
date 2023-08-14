@@ -1,4 +1,10 @@
 # XIAO_ESP32C3_Wifi_Tracker
+ 
+<div class="get_one_now_container" style={{textAlign: 'center'}}>
+    <a class="get_one_now_container" href="https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker#-wi-fi-signal-strength-tracker">
+            <strong><span><font color={'FFFFFF'} size={"4"}> Clik here to skip the tutorial ahead 🖱️</font></span></strong>
+    </a>
+</div>
 [![Watch the video](https://github.com/Zachay-NAU/XIAO_ESP32C3_Wifi_Tracker/blob/main/532840c250d789e2fc4bb68591b72f1.jpg)](https://youtu.be/7n72Knh4IIM)
 
 ---
