@@ -432,8 +432,8 @@ station = network.WLAN(network.STA_IF)
 station.active(True)
 
 # Network settings
-wifi_ssid = "UMASS fried chicken"
-wifi_password = "Zacharyloveschicken"
+wifi_ssid = "Your wifi ssid"
+wifi_password = "Your wifi password"
 url = "http://worldtimeapi.org/api/timezone/America/New_York"
 
 print("Scanning for WiFi networks, please wait...")
